@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RecipeAppFinal.MainPage">
+    <ScrollView>
+        <Grid RowDefinitions="Auto,Auto,Auto">
+            <SearchBar Grid.Row="0"
+                       BackgroundColor="LightGray"
+                       Placeholder="Search recipe"
+                     
+                       VerticalOptions="Center"
+                       Margin="10"
+                       x:Name="SearchBar" />
+            <VerticalStackLayout Grid.Row="1">
+                <Button Text="Add Recipe"
+                        Margin="10"
+                        BackgroundColor="DodgerBlue"
+                        Clicked="AddNewRecipe_Clicked" />
+                <BoxView HeightRequest="1"
+                         Margin="10"
+                         BackgroundColor="Black" />
+            </VerticalStackLayout>
+            <CollectionView Grid.Row="2"
+                            x:Name="RecipesCollectionView"
+                            ItemsSource="{Binding Recipes}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10"
+                              BackgroundColor="LightGray"
+                              Margin="0,2"
+                              ColumnDefinitions="*,Auto,Auto"
+                              RowDefinitions="Auto,Auto,Auto,Auto">
+                            <Label Grid.Row="0"
+                                   Grid.Column="0"
+                                   Text="{Binding Name}"
+                                   FontSize="18"
+                                   FontAttributes="Bold" />
+                            <Label Grid.Row="1"
+                                   Grid.Column="0"
+                                   Text="{Binding Category}"
+                                   FontSize="14"
+                                   TextColor="Gray" />
+                            <Label Grid.Row="2"
+                                   Grid.Column="0"
+                                   Text="{Binding Description}"
+                                   FontSize="12"
+                                   MaxLines="2" />
+                            <Label Grid.Row="3"
+                                   Grid.Column="0"
+                                   Text="{Binding Instructions}"
+                                   FontSize="12"
+                                   MaxLines="3" />
+                            <Button Grid.Row="0"
+                                    Grid.Column="1"
+                                    Text="Edit"
+                                    BackgroundColor="Orange"
+                                    TextColor="White"
+                                    Clicked="OnEditRecipeClicked"
+                                    CommandParameter="{Binding}" />
+                            <Button Grid.Row="0"
+                                    Grid.Column="2"
+                                    Text="Delete"
+                                    BackgroundColor="Red"
+                                    TextColor="White"
+                                    Clicked="OnDeleteRecipeClicked"
+                                    CommandParameter="{Binding}" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ScrollView>
+</ContentPage>
